@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Digital Clock by Duaa and Azzam</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,600;0,700;1,600;1,700&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+	<style>
+		* {
+			font-family: "Roboto Mono", monospace;
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			height: 100vh;
+			display: grid;
+			grid-template-rows: 1fr 1fr;
+			text-align: center;
+			align-items: center;
+			align-content: center;
+			justify-content: space-around;
+			background: black;
+		}
+		.clock {
+			/* margin: 50%; */
+
+			font-size: 50px;
+			font-weight: bold;
+
+			color: rgb(95, 169, 253);
+		}
+		h1 {
+			text-align: center;
+			font-size: larger;
+			color: rgb(255, 255, 255);
+		}
+		@media (max-width: 452px) {
+			.clock {
+				font-size: 30px;
+			}
+		}
+	</style>
+
+	<body>
+		<div id="time1" class="clock" onload="letsGo()"></div>
+		<h1>Made by Azzam & Duaa</h1>
+		<script>
+			function letsGo() {
+				let time = new Date();
+				let h = time.getHours(); // 24:00
+				let m = time.getMinutes();
+				let s = time.getSeconds();
+				let session = "AM";
+
+				if (h == 0) {
+					h = 12;
+				}
+				// (h == 0) ? h = 12 : h;
+				if (h > 12) {
+					h -= 12;
+					session = "PM";
+				}
+				// (h > 12) ? h -= 12 : h;
+				// (h < 12) ? session = "PM" : session = "AM";
+
+				h = h < 10 ? "0" + h : h;
+				m = m < 10 ? "0" + m : m;
+				s = s < 10 ? "0" + s : s;
+
+				let sa3a = h + " : " + m + " : " + s + " " + session;
+
+				document.getElementById("time1").innerText = sa3a;
+
+				document.getElementById("time1").textContent = sa3a;
+				setTimeout(letsGo, 1000);
+			}
+			letsGo();
+		</script>
+	</body>
+</html>
